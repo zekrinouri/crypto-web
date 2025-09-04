@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تشفير فوري</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+  <h2>🔐 تشفير رسائلك</h2>
+  <input type="text" id="message" placeholder="اكتب رسالتك هنا">
+  <input type="password" id="key" placeholder="كلمة المرور">
+  <button onclick="encrypt()">تشفير</button>
+  <button onclick="decrypt()">فك التشفير</button>
+  <pre id="output"></pre>
+
+  <script>
+    function encrypt() {
+      const msg = document.getElementById("message").value;
+      const key = document.getElementById("key").value;
+      const encrypted = CryptoJS.AES.encrypt(msg, key).toString();
+      document.getElementById("output").innerText = encrypted;
+    }
+
+    function decrypt() {
+      const encrypted = document.getElementById("message").value;
+      const key = document.getElementById("key").value;
+      const decrypted = CryptoJS.AES.decrypt(encrypted, key).toString(CryptoJS.enc.Utf8);
+      document.getElementById("output").innerText = decrypted;
+    }
+  </script>
+</body>
+</html>
